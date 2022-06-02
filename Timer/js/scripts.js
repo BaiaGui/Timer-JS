@@ -7,15 +7,27 @@ buttonPause.addEventListener("click", pauseContdown);
 buttonStop.addEventListener("click", stopContdown);
 timerText = document.querySelector("#clock");
 time = 10;
-z=0;
+secondsRemaining=time*60;
+minutes=0;
+seconds=0;
+
+function conversion(){
+    minutes = Math.floor(secondsRemaining/60);
+    seconds = Math.floor(secondsRemaining%60);
+    timerText.innerText = minutes + ':' + seconds;
+}
 
 function startContdown(){
     x = setInterval(function(){
-        timerText.innerText=time -z;
-        z++;
-        if(time-z < 0){
+        secondsRemaining--;
+        //conversion();
+        timerText.innerText= Math.floor(secondsRemaining/60) + ':' + Math.floor(secondsRemaining%60);
+        //timerText.innerText=time -z;
+
+
+        if(secondsRemaining-z < 0){
             clearInterval(x);
-            time=0;}
+            secondsRemaining=0;}
             
     },1000); 
 };
