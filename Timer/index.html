@@ -11,15 +11,25 @@
 
 </head>
 <body>
+    <div id="closeModal"></div>
     <div class="container">
         <div id="timer">
-            <h1 id="clock">00:00</h1>
+            <h1 id="clock">10:00</h1>
             <div class="button-container">
                 <a href="#" class="button" id="pause"><span class="material-symbols-outlined">pause</span></a>
                 <a href="#" class="button" id="play"><span class="material-symbols-outlined">play_arrow</span></a>
                 <a href="#" class="button" id="stop"><span class="material-symbols-outlined">stop</span></a>
             </div>
         </div>
+            <form id="form" autocomplete="off">
+
+                <div class="divMinSec">
+                    <input type="text" id="minutes" maxlength="2" placeholder="00" autocomplete="off">
+                    <p class="colon">:</p>
+                    <input type="text" id="seconds" maxlength="2" placeholder="00" autocomplete="off">
+                </div>
+                <!--<input type="submit" value="OK" id="okBtn"> Botao de ok-->
+            </form>
     </div>
 </body>
 </html>
