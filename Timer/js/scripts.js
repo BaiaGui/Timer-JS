@@ -5,7 +5,11 @@ clock = document.querySelector('#clock');
 form = document.querySelector('#form');
 timer = document.querySelector('#timer');
 closeModal = document.querySelector('#closeModal');
+
+min = document.querySelector('#minutes');
+sec = document.querySelector('#seconds');
 //container = document.querySelector('.container');
+
 
 buttonPlay.addEventListener("click", startContdown);
 buttonPause.addEventListener("click", pauseContdown);
@@ -19,32 +23,35 @@ turnBtnOffStop();
 
 clock.addEventListener("click", openForm);
 timerText = document.querySelector("#clock");
-time = '10:40';
+minutes=format0(0,2);
+seconds=format0(0,2);
+time = minutes + ':' + seconds;
 timerText.innerText=time;
-secondsRemaining=time*60;
-minutes=0;
-seconds=0;
 
 function format0(num, size){
     num=num.toString();
     while(num.length<size){
         num = '0'+ num;
     }
+    parseInt(num);
     return num;
 }
 
 function startContdown(){
+
     turnBtnOnPause();
     turnBtntOffStart();
     turnBtnOffStop();
 
-    confirmEdit();
-
     clock.removeEventListener('click', openForm);
     clock.style.cursor='default';
+
+    confirmEdit();
+
+
     x = setInterval(function(){
         minutes=Math.floor(secondsRemaining/60);
-        seconds=Math.floor(secondsRemaining%60);
+        seconds=Math.floor(secondsRemaining%60);    
         minutes=format0(minutes, 2);
         seconds=format0(seconds, 2);
         timerText.innerText= minutes + ':' + seconds;
@@ -61,6 +68,8 @@ function pauseContdown(){
     turnBtnOnStart();
     turnBtnOnStop();
     turnBtnOffPause();
+    min.value=minutes;
+    sec.value=seconds;
 
 }
 
@@ -72,6 +81,8 @@ function stopContdown(){
     turnBtnOffStop();
     clock.addEventListener("click", openForm);
     clock.style.cursor='pointer';
+    min.value=format0(0,2);
+    sec.value=format0(0,2);
 }
 
 function openForm(){
@@ -89,14 +100,17 @@ function confirmEdit(){
     form.style.display = 'none';
     closeModal.style.display = 'none';
     clock.style.display = 'flex';
+    submitForm();
 }
 
-
-
-
-
-
-
+function submitForm(){
+    form.submit();
+    minutes=min.value;
+    seconds=sec.value;
+    secondsRemaining = (parseInt(minutes*60)) + parseInt(seconds);
+    time = minutes + ':' + seconds;
+    timerText.innerText=time;
+}
 
 
 function turnBtntOffStart(){
