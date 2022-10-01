@@ -1,2 +1,2 @@
 # Timer JS
- Timer feito em JS
+Countdown timer made in JS
